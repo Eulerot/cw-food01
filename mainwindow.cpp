@@ -533,21 +533,21 @@ void MainWindow::onPrint() {
 
 // Получение данных с таблицы
 QVector<std::pair<int, float>> MainWindow::extractChartData() const {
-    QVector<std::pair<int, float>> data;
+    QVector<std::pair<int, float>> data_;
 
     for (int row = 0; row < m_model->rowCount(); ++row) {
         int x = m_model->data(m_model->index(row, 6)).toInt();
         float y = m_model->data(m_model->index(row, 7)).toFloat();
-        data.append(std::make_pair(x, y));
+        data_.append(std::make_pair(x, y));
     }
-
-    return data;
+    std::sort(data_.begin(), data_.end());
+    return data_;
 }
 
 // Создание окна с графиком
 void MainWindow::showChart() {
-    QVector<std::pair<int, float>> data = extractChartData();
-    ChartDialog *dialog = new ChartDialog(data, this);
+    QVector<std::pair<int, float>> data_ = extractChartData();
+    ChartDialog *dialog = new ChartDialog(data_, this);
     dialog->exec();
     delete dialog;
 }
