@@ -46,4 +46,9 @@ ChartDialog::ChartDialog(QVector<std::pair<int, float>>& data, QWidget *parent)
     mainLayout->addWidget(chartView); // Добавление виджета с графиком в компоновку
 
     setLayout(mainLayout); // Установка компоновки для диалогового окна
+
+}
+ChartDialog::~ChartDialog(){
+    delete chart;
+    delete chartView;
 }

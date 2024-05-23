@@ -21,7 +21,7 @@ public:
      * @param parent The parent widget (default is nullptr).
      */
     ChartDialog(QVector<std::pair<int, float>>& data, QWidget *parent = nullptr);
-
+    ~ChartDialog();
 private:
     QChart *chart; ///< The chart object.
     QChartView *chartView; ///< The chart view object.

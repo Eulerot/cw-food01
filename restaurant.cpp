@@ -2,7 +2,7 @@
 
 // Конструктор по умолчанию
 Restaurant::Restaurant()
-    : m_name(""), m_owner(""), m_address(""), m_cuisine(""), m_capital(0), m_attendance(0), m_avgbill(0), m_rating(0.0) {}
+    : m_name(""), m_owner(""), m_address(""), m_cuisine(""), m_capital(0), m_attendance(0), m_avgbill(0), m_rating(0.0f) {}
 
 // Конструктор с параметрами
 Restaurant::Restaurant(const QString &name, const QString &owner, const QString &address, const QString &cuisine, int capital, int attendance, int avgbill, float rating)

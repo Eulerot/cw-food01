@@ -38,7 +38,7 @@ bool RestaurantModel::isValidValue(int column, const QVariant &value) const {
 
 // Возвращает данные для отображения в заданной модели и роли
 QVariant RestaurantModel::data(const QModelIndex &index, int role) const {
-    if (!index.isValid() || role != Qt::DisplayRole)
+    if (!index.isValid() || (role != Qt::DisplayRole && role != Qt::EditRole))
         return QVariant();
 
     const Restaurant &restaurant = m_restaurants[index.row()];
@@ -51,7 +51,7 @@ QVariant RestaurantModel::data(const QModelIndex &index, int role) const {
     case 4: return restaurant.getCapital();
     case 5: return restaurant.getAttendance();
     case 6: return restaurant.getAvgBill();
-    case 7: return restaurant.getRating();
+    case 7: return round(restaurant.getRating()*10)/10;
     default: return QVariant();
     }
 }

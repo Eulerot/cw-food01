@@ -31,7 +31,7 @@ MainWindow::MainWindow(QWidget *parent)
     qApp->installTranslator(&qtTranslator); // Установка переводчика для Qt
     qmPath = "../cw-food01/translations"; // Установка пути к переводам
 
-    setSettings(); // Установка настроек
+
     setupMenuBar(); // Настройка строки меню
     setupTableView(); // Настройка таблицы
     setupSearchBar(); // Настройка строки поиска
@@ -47,6 +47,12 @@ MainWindow::MainWindow(QWidget *parent)
 // Деструктор класса MainWindow
 MainWindow::~MainWindow() {
     getSettings(); // Сохранение настроек при закрытии
+    delete m_tableView;
+    delete m_searchBar;
+    delete m_model;
+    delete m_controller;
+    delete languageMenu;
+    delete languageActionGroup;
 }
 
 // Обработчик события закрытия окна
@@ -305,6 +311,7 @@ void MainWindow::onOpenFile() {
     filename = QFileDialog::getOpenFileName(this, tr("Open File"), "", tr("db Files (*.db)"));
     m_controller->loadFromFile(filename);
     this->setWindowTitle(filename);
+    m_tableView->resizeColumnsToContents();
     updateActtions();
 }
 
@@ -340,6 +347,7 @@ void MainWindow::onNewFile() {
         this->setWindowTitle(filename);
         m_model->clear();
     }
+    m_tableView->resizeColumnsToContents();
     updateActtions();
 
 }
